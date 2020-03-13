@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/drego-injunction-scale/static/css/main.546a7a5d.chunk.css",
+    "main.js": "/drego-injunction-scale/static/js/main.63de2a4d.chunk.js",
+    "main.js.map": "/drego-injunction-scale/static/js/main.63de2a4d.chunk.js.map",
+    "runtime-main.js": "/drego-injunction-scale/static/js/runtime-main.1dce2d39.js",
+    "runtime-main.js.map": "/drego-injunction-scale/static/js/runtime-main.1dce2d39.js.map",
+    "static/css/2.54a81f77.chunk.css": "/drego-injunction-scale/static/css/2.54a81f77.chunk.css",
+    "static/js/2.07f45553.chunk.js": "/drego-injunction-scale/static/js/2.07f45553.chunk.js",
+    "static/js/2.07f45553.chunk.js.map": "/drego-injunction-scale/static/js/2.07f45553.chunk.js.map",
+    "index.html": "/drego-injunction-scale/index.html",
+    "precache-manifest.889c9c61f63475db98adec56a6884d4c.js": "/drego-injunction-scale/precache-manifest.889c9c61f63475db98adec56a6884d4c.js",
+    "service-worker.js": "/drego-injunction-scale/service-worker.js",
+    "static/css/2.54a81f77.chunk.css.map": "/drego-injunction-scale/static/css/2.54a81f77.chunk.css.map",
+    "static/css/main.546a7a5d.chunk.css.map": "/drego-injunction-scale/static/css/main.546a7a5d.chunk.css.map",
+    "static/js/2.07f45553.chunk.js.LICENSE.txt": "/drego-injunction-scale/static/js/2.07f45553.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1dce2d39.js",
+    "static/css/2.54a81f77.chunk.css",
+    "static/js/2.07f45553.chunk.js",
+    "static/css/main.546a7a5d.chunk.css",
+    "static/js/main.63de2a4d.chunk.js"
+  ]
+}
