@@ -1,27 +1,31 @@
 import React, { useState, useRef } from 'react';
 import './App.css';
-import { dataEn, injunctionsEn } from './data';
+import { dataEn, injunctionsEn, dataRu } from './data';
 import { Map } from 'immutable';
 
 const answerNumbers = [...Array(9)].map((_, i) => i + 1);
 
+export type InjunctionType = 'operative' | 'reverse' | 'none';
+
 interface InjunctionResult {
   name: string;
   score: number;
-  type: 'operative' | 'reverse';
+  type: InjunctionType;
 }
 
 interface Result {
   injunctions: InjunctionResult[];
-  threshold: number;
+  mean: number;
+  stdev: number;
 }
 
 function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const answers = useRef(Map<number, number>());
   const [result, setResult] = useState<Result>();
+  const [lang, setLang] = useState<'ru'|'en'>('en');
 
-  const questions = dataEn;
+  const questions = lang === 'en' ? dataEn : dataRu;
   const injunctions = injunctionsEn;
 
   const onAnswer = (answer: number) => {
@@ -34,10 +38,23 @@ function App() {
     }
   };
 
+  const downloadAnswers = (): string => {
+    const answerRes = questions.map((x, i) => [i + 1, `"${x}"`, answers.current.get(i) ?? 'error'].join(',')).join('\n');
+    const res = result?.injunctions.map(x => [x.name, x.score, x.type].join(',')).join('\n');
+    return 'data:text/plain;charset=utf-8,' + encodeURIComponent([answerRes, res].join('\n\n'));
+  };
+
   if (result !== undefined) {
     const maxScore = Math.max(...result.injunctions.map(x => x.score));
     return (
       <div className="container mx-auto py-4 px-4">
+        <div className="py-2">
+          <a className="bg-gray-300 hover:bg-gray-400 py-1 px-3 no-outline"
+            download="injunction_scale_answers.csv"
+            href={downloadAnswers()}>
+            Download answers
+          </a>
+        </div>
         <table className="table-auto border-collapse">
           <thead>
             <tr>
@@ -55,10 +72,10 @@ function App() {
                 <tr>
                   <td colSpan={2}>
                     <div className="bar">
-                      <div style={{ 
+                      <div style={{
                         width: `${x.score / maxScore * 100}%`,
-                        backgroundColor: x.score > result.threshold ? '#6f81ff' : '#72d675'
-                         }}>{x.score }</div>
+                        backgroundColor: x.type === 'operative' ? '#6f81ff' : x.type === 'reverse' ? '#72d675' : 'transparent'
+                      }}>{x.score}</div>
                     </div>
                   </td>
                 </tr>
@@ -71,6 +88,12 @@ function App() {
 
   return (
     <div className="container mx-auto py-4 px-4">
+      <div>
+        <select value={lang} onChange={e => setLang(e.target.value as 'ru'|'en')}>
+          <option value="en">English</option>
+          <option value="ru">Русский</option>
+        </select>
+      </div>
       <div className="py-4 question">
         {currentQuestionIndex + 1}: {questions[currentQuestionIndex]}
       </div>
@@ -94,13 +117,13 @@ function calculateResult(answers: Map<number, number>, injunctions: string[]): R
   const { length } = r;
   const mean = r.map(x => x.score).reduce(sum) / length;
   const stdev = Math.sqrt(r.map(x => x.score).map(x => Math.pow(x - mean, 2)).reduce(sum) / length);
-  const threshold = mean + stdev;
   const result: Result = {
-    threshold,
+    mean,
+    stdev,
     injunctions: r.map(({ name, score }) => ({
       name,
       score,
-      type: score > threshold ? 'operative' : 'reverse',
+      type: score >= mean + stdev ? 'operative' : score <= mean - stdev ? 'reverse' : 'none',
     })),
   };
   return result;
