@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/drego-injunction-scale/precache-manifest.889c9c61f63475db98adec56a6884d4c.js"
+  "/drego-injunction-scale/precache-manifest.f266fcbd419c3f917e0dbf0a9dea84d0.js"
 );
 
 self.addEventListener('message', (event) => {

@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7d8491a4d6a4db574026c5cfefb057b8",
+    "revision": "0398f3dfef9982fbe5656b5fc4ee20c2",
     "url": "/drego-injunction-scale/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/drego-injunction-scale/static/css/2.54a81f77.chunk.css"
   },
   {
-    "revision": "97573c240e3a0cb60707",
+    "revision": "c3665e69d83bf323949f",
     "url": "/drego-injunction-scale/static/css/main.546a7a5d.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/drego-injunction-scale/static/js/2.07f45553.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "97573c240e3a0cb60707",
-    "url": "/drego-injunction-scale/static/js/main.63de2a4d.chunk.js"
+    "revision": "c3665e69d83bf323949f",
+    "url": "/drego-injunction-scale/static/js/main.e31288cb.chunk.js"
   },
   {
     "revision": "ac84d45d6aaa6961abfb",
